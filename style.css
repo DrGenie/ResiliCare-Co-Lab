@@ -1,20 +1,18 @@
-//st//
 body {
   font-family: Arial, sans-serif;
   background: #eef2f3;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
 }
 header {
   background: #004c99;
-  color: white;
+  color: #fff;
   padding: 1rem;
   text-align: center;
 }
 main {
-  max-width: 600px;
+  max-width: 700px;
   margin: 2rem auto;
-  background: white;
+  background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -23,31 +21,46 @@ label {
   display: block;
   margin-top: 1rem;
 }
-select,
-button {
+select, button {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  border-radius: 4px;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 button {
   background: #0066cc;
-  color: white;
+  color: #fff;
   border: none;
   margin-top: 1.5rem;
   cursor: pointer;
 }
-button:hover {
+button:disabled {
+  background: #99bce0;
+  cursor: not-allowed;
+}
+button:hover:enabled {
   background: #005bb5;
 }
-#result {
+#resultText {
   margin-top: 1.5rem;
   padding: 1rem;
-  border-radius: 4px;
   background: #dff0d8;
   color: #3c763d;
+  border-radius: 4px;
 }
 .hidden {
   display: none;
+}
+canvas {
+  margin-top: 2rem;
+  max-width: 100%;
+}
+#tutorial {
+  margin-top: 3rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+#tutorial h2, #tutorial h3 {
+  margin-top: 1.5rem;
 }
