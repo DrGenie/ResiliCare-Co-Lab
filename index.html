@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GP Resilience Decision Tool</title>
+  <title>GP Resilience Decision Aid</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>GP Resilience Training Decision Aid</h1>
-    <p>Select your preferences below to find the best training intervention.</p>
+    <p>Select your stress level, preferred format and boundary-setting focus. Then click <em>Get Recommendation</em>.</p>
   </header>
+
   <main>
+    <!-- Form -->
     <form id="decisionForm">
       <label for="stress">Stress Level:</label>
       <select id="stress" required>
-        <option value="">--Choose--</option>
+        <option value="">– Choose –</option>
         <option value="low">Low</option>
         <option value="moderate">Moderate</option>
         <option value="high">High</option>
@@ -23,7 +27,7 @@
 
       <label for="format">Preferred Format:</label>
       <select id="format" required>
-        <option value="">--Choose--</option>
+        <option value="">– Choose –</option>
         <option value="workshop">Interactive Workshop</option>
         <option value="online">Self‑paced Online</option>
         <option value="peer">Peer Support Group</option>
@@ -31,17 +35,43 @@
 
       <label for="boundary">Boundary‑Setting Focus:</label>
       <select id="boundary" required>
-        <option value="">--Choose--</option>
+        <option value="">– Choose –</option>
         <option value="time">Time Management</option>
         <option value="communication">Communication Skills</option>
         <option value="wellbeing">Well‑being Strategies</option>
       </select>
 
-      <button type="submit">Get Recommendation</button>
+      <button type="submit" id="submitBtn">Get Recommendation</button>
     </form>
 
-    <div id="result" class="hidden"></div>
+    <!-- Recommendation text -->
+    <div id="resultText" class="hidden"></div>
+
+    <!-- Chart container -->
+    <canvas id="resultChart" class="hidden"></canvas>
+
+    <!-- Tutorial / instructions -->
+    <section id="tutorial">
+      <h2>How to use</h2>
+      <ol>
+        <li>Choose your current stress level.</li>
+        <li>Select the training format you prefer.</li>
+        <li>Pick which boundary‑setting topic is most relevant.</li>
+        <li>Click “Get Recommendation” to see:</li>
+        <ul>
+          <li>A customised text recommendation.</li>
+          <li>A bar chart comparing <strong>baseline</strong> vs. <strong>post‑training</strong> intention‑to‑leave rates for a simulated workshop matching your choices.</li>
+        </ul>
+      </ol>
+      <h3>What the chart means</h3>
+      <p>
+        The blue bar shows the % of GPs who would intend to leave <em>before</em> the training;  
+        the green bar shows the % who intend to leave <em>after</em>.  
+        A larger drop indicates greater effectiveness of that intervention in retaining staff.
+      </p>
+    </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
