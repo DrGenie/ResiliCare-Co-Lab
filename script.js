@@ -1,26 +1,22 @@
-const simulatedResults = [
-  { workshop: "Workshop 1", participants: 20, satisfaction: 4.6, leaveBaseline: 60, leavePost: 45 },
-  { workshop: "Workshop 2", participants: 15, satisfaction: 4.2, leaveBaseline: 55, leavePost: 40 },
-  { workshop: "Workshop 3", participants: 25, satisfaction: 4.8, leaveBaseline: 65, leavePost: 50 }
-];
+document.getElementById('decisionForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const stress = document.getElementById('stress').value;
+  const format = document.getElementById('format').value;
+  const boundary = document.getElementById('boundary').value;
 
-function renderResultsTable() {
-  const container = document.getElementById('results');
-  const table = document.createElement('table');
-  let thead = '<thead><tr>' +
-    '<th>Workshop</th><th>Participants</th><th>Avg. Satisfaction</th>' +
-    '<th>Leave Intention (Baseline %)</th><th>Leave Intention (Post %)</th>' +
-    '</tr></thead>';
-  let tbody = '<tbody>' + simulatedResults.map(r =>
-    `<tr>
-      <td>${r.workshop}</td>
-      <td>${r.participants}</td>
-      <td>${r.satisfaction.toFixed(1)}</td>
-      <td>${r.leaveBaseline}%</td>
-      <td>${r.leavePost}%</td>
-    </tr>`).join('') + '</tbody>';
-  table.innerHTML = thead + tbody;
-  container.appendChild(table);
-}
+  let recommendation = '';
 
-document.addEventListener('DOMContentLoaded', renderResultsTable);
+  if (stress === 'high' && format === 'workshop') {
+    recommendation = 'An interactive workshop focusing on ' + boundary + ' would be ideal to manage high stress and build peer support.';
+  } else if (stress === 'high' && format === 'online') {
+    recommendation = 'A self‑paced online module on ' + boundary + ' allows flexibility while addressing your high stress.';
+  } else if (stress === 'moderate' && format === 'peer') {
+    recommendation = 'Joining a peer support group that discusses ' + boundary + ' can help maintain your resilience.';
+  } else {
+    recommendation = 'Consider a blended approach: a short workshop on ' + boundary + ' followed by online resources to reinforce learning.';
+  }
+
+  const resultDiv = document.getElementById('result');
+  resultDiv.textContent = recommendation;
+  resultDiv.classList.remove('hidden');
+});
